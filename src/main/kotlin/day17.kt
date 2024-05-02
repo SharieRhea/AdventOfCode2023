@@ -3,7 +3,7 @@ import java.util.*
 
 val grid: MutableList<MutableList<Int>> = mutableListOf()
 fun main() {
-    val lines: List<String> = File("src/main/resources/test").readLines()
+    val lines: List<String> = File("src/main/resources/day17Input.txt").readLines()
     lines.forEach { line ->
         grid.add(mutableListOf())
         line.forEach { tile ->
@@ -11,10 +11,8 @@ fun main() {
         }
     }
 
-    val part1HeatLoss: Int = part1(grid)
-    println("Minimal heat loss: $part1HeatLoss")
-    val part2HeatLoss: Int = part2(grid)
-    println("Ultra minimal heat loss: $part2HeatLoss")
+    println("Minimal heat loss: " + part1(grid))
+    println("Ultra minimal heat loss: " + part2(grid))
 }
 
 enum class Direction {
@@ -27,6 +25,7 @@ class Block(
     val incomingDirection: Direction,
     val momentum: Int,
 ) {
+    // nodes are equivalent if they have the same coords, incomingDirection, and momentum
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is Block) return false
@@ -152,26 +151,22 @@ fun part2(grid: List<List<Int>>): Int {
     val queue: PriorityQueue<Block> = PriorityQueue<Block>(comparator)
 
     // add the path going East
-    queue.add(Block(Pair(4, 0), accumulateHeat(Pair(0, 0), Direction.East, 4), Direction.West, 4))
+    queue.add(Block(Pair(4, 0), accumulateHeat(Pair(0, 0), Direction.East, 4), Direction.West, 3))
     // add the path going South
-    queue.add(Block(Pair(0, 4), accumulateHeat(Pair(0, 0), Direction.South, 4),  Direction.North, 4))
+    queue.add(Block(Pair(0, 4), accumulateHeat(Pair(0, 0), Direction.South, 4),  Direction.North, 3))
 
     while (queue.isNotEmpty()) {
         val current: Block = queue.poll()
-        println("${current.coordinates} ${current.heatLoss} ${current.incomingDirection} ${current.momentum}")
 
         // do nothing if this node has already been explored, if not, add it and explore
-        if (explored.contains(current))
-            continue
-        else
-            explored.add(current)
+        if (explored.contains(current)) continue else explored.add(current)
 
         // reached the destination
         if (current.coordinates.first == grid[0].size -1 && current.coordinates.second == grid.size - 1)
             return current.heatLoss
 
-        // if momentum is less than 10, moving straight is allowed
-        if (current.momentum < 10) {
+        // if momentum is less than 9, moving straight is allowed
+        if (current.momentum < 9) {
             val newCoordinates: Pair<Int, Int> = when (current.incomingDirection) {
                 Direction.North -> getNewCoordinates(current.coordinates, Direction.South, 1)
                 Direction.East -> getNewCoordinates(current.coordinates, Direction.West, 1)
@@ -195,23 +190,23 @@ fun part2(grid: List<List<Int>>): Int {
         when (current.incomingDirection) {
             Direction.North -> {
                 newCoordinates = getNewCoordinates(current.coordinates, Direction.East, 4)
-                newDirection = Direction.West
                 accumulatedHeat = accumulateHeat(current.coordinates, Direction.East, 4)
+                newDirection = Direction.West
             }
             Direction.East -> {
                 newCoordinates = getNewCoordinates(current.coordinates, Direction.South, 4)
-                newDirection = Direction.North
                 accumulatedHeat = accumulateHeat(current.coordinates, Direction.South, 4)
+                newDirection = Direction.North
             }
             Direction.South -> {
                 newCoordinates = getNewCoordinates(current.coordinates, Direction.West, 4)
-                newDirection = Direction.East
                 accumulatedHeat = accumulateHeat(current.coordinates, Direction.West, 4)
+                newDirection = Direction.East
             }
             Direction.West -> {
                 newCoordinates = getNewCoordinates(current.coordinates, Direction.North, 4)
-                newDirection = Direction.South
                 accumulatedHeat = accumulateHeat(current.coordinates, Direction.North, 4)
+                newDirection = Direction.South
             }
         }
         if (isValidCoordinates(newCoordinates))
@@ -219,30 +214,30 @@ fun part2(grid: List<List<Int>>): Int {
                 newCoordinates,
                 current.heatLoss + accumulatedHeat,
                 newDirection,
-                4
+                3
             ))
 
         // right turn
         when (current.incomingDirection) {
             Direction.North -> {
                 newCoordinates = getNewCoordinates(current.coordinates, Direction.West, 4)
-                newDirection = Direction.East
                 accumulatedHeat = accumulateHeat(current.coordinates, Direction.West, 4)
+                newDirection = Direction.East
             }
             Direction.East -> {
                 newCoordinates = getNewCoordinates(current.coordinates, Direction.North, 4)
-                newDirection = Direction.South
                 accumulatedHeat = accumulateHeat(current.coordinates, Direction.North, 4)
+                newDirection = Direction.South
             }
             Direction.South -> {
                 newCoordinates = getNewCoordinates(current.coordinates, Direction.East, 4)
-                newDirection = Direction.West
                 accumulatedHeat = accumulateHeat(current.coordinates, Direction.East, 4)
+                newDirection = Direction.West
             }
             Direction.West -> {
                 newCoordinates =  getNewCoordinates(current.coordinates, Direction.South, 4)
-                newDirection = Direction.North
                 accumulatedHeat = accumulateHeat(current.coordinates, Direction.South, 4)
+                newDirection = Direction.North
             }
         }
         if (isValidCoordinates(newCoordinates))
@@ -250,12 +245,13 @@ fun part2(grid: List<List<Int>>): Int {
                 newCoordinates,
                 current.heatLoss + accumulatedHeat,
                 newDirection,
-                4
+                3
             ))
     }
     return -1
 }
 
+// return coordinates after length moves in direction starting from coordinates
 fun getNewCoordinates(coordinates: Pair<Int, Int>, direction: Direction, length: Int): Pair<Int, Int> {
     return when (direction) {
         Direction.North -> Pair(coordinates.first, coordinates.second - length)
@@ -270,13 +266,13 @@ fun isValidCoordinates(coordinates: Pair<Int, Int>): Boolean {
     return (coordinates.first < grid[0].size && coordinates.second < grid.size)
 }
 
+// sum of heatLoss values for the NEXT length moves in direction (don't include current)
 fun accumulateHeat(coordinates: Pair<Int, Int>, direction: Direction, length: Int): Int {
     var heat = 0
     for (i in 1..length) {
         val newCoordinates = getNewCoordinates(coordinates, direction, i)
         if (isValidCoordinates(newCoordinates))
-            heat += grid[newCoordinates.second][coordinates.first]
+            heat += grid[newCoordinates.second][newCoordinates.first]
     }
-    // println("$coordinates $direction $length $heat")
     return heat
 }
