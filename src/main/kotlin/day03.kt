@@ -13,7 +13,7 @@ fun main() {
     var y = 0
     val list = ArrayList<ArrayList<Point>>()
     // Populate list of lists to simulate a grid
-    File("src/main/resources/day03Input.txt").forEachLine { line ->
+    File("resources/day03Input.txt").forEachLine { line ->
         x = 0
         val row = ArrayList<Point>()
         line.forEach { character ->

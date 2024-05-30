@@ -8,7 +8,7 @@ fun main() {
     val parts = ArrayList<Part>()
     val workflows = HashMap<String, Workflow>()
 
-    val file = File("src/main/resources/day19Input.txt").readText()
+    val file = File("resources/day19Input.txt").readText()
     val workflowsList = file.substringBefore("\n\n").split("\n")
     val partsList = file.substringAfter("\n\n").split("\n")
 

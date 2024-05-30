@@ -3,7 +3,7 @@ import java.io.File
 fun main() {
     var sum = 0L
     var historySum = 0L
-    File("src/main/resources/day09Input.txt").forEachLine { line ->
+    File("resources/day09Input.txt").forEachLine { line ->
         val lists = ArrayList<ArrayList<Long>>()
         val numbers = line.split(" ").map { it.toLong() }
         lists.add(numbers as ArrayList<Long>)

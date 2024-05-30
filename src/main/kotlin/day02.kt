@@ -4,7 +4,7 @@ fun main() {
     var sumID = 0
     var sumPower = 0
 
-    File("src/main/resources/day02Input.txt").forEachLine { line ->
+    File("resources/day02Input.txt").forEachLine { line ->
         val sessions = line.split("[:;]".toRegex()).toMutableList()
         val gameID = sessions[0].split(" ")[1].toInt()
         // Remove the first element which is "Game #", leaving only sessions

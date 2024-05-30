@@ -20,7 +20,7 @@ data class Lens(val label: String, val focalLength: Int) {
 }
 
 fun main() {
-    val input = File("src/main/resources/day15Input.txt").readText()
+    val input = File("resources/day15Input.txt").readText()
     val steps = input.split(",")
     var sum = 0
     for (step in steps) {

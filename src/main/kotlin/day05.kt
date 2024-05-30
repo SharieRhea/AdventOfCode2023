@@ -9,7 +9,7 @@ var temperatureToHumidity = HashMap<Pair<Long, Long>, Long>()
 var humidityToLocation = HashMap<Pair<Long, Long>, Long>()
 
 fun main() {
-    val contents: String = File("src/main/resources/day05Input.txt").readText()
+    val contents: String = File("resources/day05Input.txt").readText()
     // Split into the different sections of the file
     val chunks = contents.split("\n\n")
     val seeds = chunks[0].split(" ").toMutableList()

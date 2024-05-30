@@ -1,7 +1,7 @@
 import java.io.File
 
 fun main() {
-    val contents = File("src/main/resources/day13Input.txt").readText()
+    val contents = File("resources/day13Input.txt").readText()
     val sections = contents.split("\n\n")
     var sum = 0
     var newSum = 0

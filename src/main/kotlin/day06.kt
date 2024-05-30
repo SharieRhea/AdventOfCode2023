@@ -5,7 +5,7 @@ fun main() {
     var waysToWinSum = 0
 
     // Parsing input
-    val lines = File("src/main/resources/day06Input.txt").readLines()
+    val lines = File("resources/day06Input.txt").readLines()
     val times = lines[0].split("( )+".toRegex()).toMutableList()
     times.removeAt(0)
     val timesList = times.map { it.toInt() }

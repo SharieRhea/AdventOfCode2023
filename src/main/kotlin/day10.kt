@@ -9,7 +9,7 @@ data class Pipe(val value: Char, val partOfLoop: Boolean = false)
 fun main() {
     val grid = ArrayList<ArrayList<Pipe>>()
     var start = Pair(0, 0)
-    File("src/main/resources/day10Input.txt").forEachLine {line ->
+    File("resources/day10Input.txt").forEachLine {line ->
         val list = ArrayList<Pipe>().toMutableList()
         line.forEach { char ->
             list.add(Pipe(char))

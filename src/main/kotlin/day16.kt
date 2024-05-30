@@ -6,7 +6,7 @@ data class Beam(val tile: Tile, val direction: Directions)
 fun main() {
     val rows = ArrayList<ArrayList<Tile>>()
     var yIndex = 0
-    File("src/main/resources/day16Input.txt").forEachLine { line ->
+    File("resources/day16Input.txt").forEachLine { line ->
         var xIndex = 0
         val row = ArrayList<Tile>()
         for (char in line) {

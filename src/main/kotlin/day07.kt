@@ -17,7 +17,7 @@ fun main() {
 
     val games = ArrayList<Game>()
 
-    File("src/main/resources/day07Input.txt").forEachLine { line ->
+    File("resources/day07Input.txt").forEachLine { line ->
         val contents = line.split(" ")
         games.add(Game(contents[0], getHandType(contents[0]), contents[1].toInt()))
     }

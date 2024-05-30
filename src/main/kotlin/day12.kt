@@ -5,7 +5,7 @@ var partTwoSum = 0L
 val map = HashMap<String, Long>()
 
 fun main() {
-    File("src/main/resources/day12Input.txt").forEachLine { line ->
+    File("resources/day12Input.txt").forEachLine { line ->
         val contents = line.split(" ")
         val numbers = contents[1].split(",").map { it.toInt() }
         walk(contents[0], numbers)

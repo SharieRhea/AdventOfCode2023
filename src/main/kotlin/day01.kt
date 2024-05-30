@@ -14,7 +14,7 @@ fun main() {
     map["nine"] = '9'
 
     var sum: Int = 0
-    File("src/main/resources/day01Input.txt").forEachLine { line ->
+    File("resources/day01Input.txt").forEachLine { line ->
         // Initial values
         var firstDigit: Char? = null
         var firstDigitIndex: Int = -1

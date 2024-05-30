@@ -12,7 +12,7 @@ fun process(expansionAmount: Long) {
     // Keep track of total columns due to expansion
     var numberOfColumns = 0L
     var y = 0L
-    File("src/main/resources/day11Input.txt").forEachLine { line ->
+    File("resources/day11Input.txt").forEachLine { line ->
         x = 0
         var emptySpace = true
         line.forEach { char ->

@@ -73,7 +73,7 @@ private fun isValidMove(coordinates: Pair<Int, Int>, part: Int): Boolean {
 
 private fun constructMap(): List<List<Boolean>> {
     val columns: MutableList<List<Boolean>> = mutableListOf()
-    File("src/main/resources/day21Input.txt").readLines().forEach { line ->
+    File("resources/day21Input.txt").readLines().forEach { line ->
         val row: MutableList<Boolean> = mutableListOf()
         line.forEach { character ->
             when (character) {

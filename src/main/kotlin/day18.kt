@@ -12,7 +12,7 @@ fun main() {
 private fun partOne() {
     val map = HashMap<Pair<Int, Int>, Trench>()
     var location = Pair(0, 0)
-    File("src/main/resources/day18Input.txt").forEachLine { line ->
+    File("resources/day18Input.txt").forEachLine { line ->
         val contents = line.split(" ")
         val direction = contents[0].toCharArray()[0]
         val meters = contents[1].toInt()

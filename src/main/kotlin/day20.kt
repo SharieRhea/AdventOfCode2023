@@ -17,7 +17,7 @@ fun main() {
 
 private fun constructModules(): HashMap<String, Module> {
     val modules: HashMap<String, Module> = HashMap()
-    val lines = File("src/main/resources/day20Input.txt").readLines()
+    val lines = File("resources/day20Input.txt").readLines()
     lines.forEach { line ->
         val parts = line.split(" -> ")
         val destinations = parts[1].split(", ")

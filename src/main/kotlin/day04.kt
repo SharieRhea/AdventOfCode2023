@@ -7,7 +7,7 @@ fun main() {
     // Begin with one instance of each scratchoff
     val gamesList = IntArray(204) { 1 }
     var index = 0
-    File("src/main/resources/day04Input.txt").forEachLine { line ->
+    File("resources/day04Input.txt").forEachLine { line ->
         val card = line.split(":( )+".toRegex()).toMutableList()
         // Remove the first element which is "Card #", leaving only card numbers
         card.removeAt(0)

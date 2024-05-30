@@ -7,7 +7,7 @@ fun main() {
     // Store nodes that end with "A" for part 2
     val startNodes = ArrayList<Node>().toMutableList()
     val map = HashMap<String, Node>()
-    File("src/main/resources/day08Input.txt").forEachLine {line ->
+    File("resources/day08Input.txt").forEachLine {line ->
         if (instructions.isEmpty())
             instructions = line
         else if (line.isNotBlank()) {

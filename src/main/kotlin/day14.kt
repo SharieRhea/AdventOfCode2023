@@ -3,7 +3,7 @@ var rows =  ArrayList<String>()
 var columns = ArrayList<String>()
 val memoizationMap = HashMap<String, String>()
 fun main() {
-    rows = File("src/main/resources/day14Input.txt").readLines() as ArrayList<String>
+    rows = File("resources/day14Input.txt").readLines() as ArrayList<String>
     // Get Columns
     getColumns()
 

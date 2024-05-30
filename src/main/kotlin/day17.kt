@@ -3,7 +3,7 @@ import java.util.*
 
 val grid: MutableList<MutableList<Int>> = mutableListOf()
 fun main() {
-    val lines: List<String> = File("src/main/resources/day17Input.txt").readLines()
+    val lines: List<String> = File("resources/day17Input.txt").readLines()
     lines.forEach { line ->
         grid.add(mutableListOf())
         line.forEach { tile ->
