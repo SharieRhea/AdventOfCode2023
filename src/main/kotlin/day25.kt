@@ -35,8 +35,6 @@ fun main() {
 		while (workingGraph.keys.size > 2) {
 			val node1: String = workingGraph.keys.shuffled().take(1)[0]
 			val node2: String = workingGraph[node1]!!.shuffled().take(1)[0]
-			// println("contracting ${node1} and ${node2}")
-			// println(workingGraph)
 			contract(node1, node2, workingGraph)
 		}
 		if (workingGraph[workingGraph.keys.take(1)[0]]!!.size == 3) {
@@ -69,12 +67,3 @@ private fun contract(node1: String, node2: String, graph: HashMap<String, Mutabl
 		}
 	}
 }
-
-/*
- * Intuition: Karger's algorithm, for another day 
- * 2847978 too high
- * 843453 too high
- * 2942 too low
- * 67788 incorrect
- * 171220
- */
